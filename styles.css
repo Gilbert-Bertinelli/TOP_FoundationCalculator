@@ -1,0 +1,25 @@
+:root{
+    --background: #0a0e23;
+    --calculator-body: #f0f0f0;
+    --display: #1a1a2e;
+    --numbers: #4d4d4d;
+    --operation-buttons: #ff9500;
+    --equal-button: #ff6b35;
+    --ac-del-buttons: #a5a5a5;
+    --text-display: #ffffff;
+    --text-button: #000000;
+}
+
+body{
+    background-color: var(--background);
+}
+
+#calculator-frame{
+    background-color: var(--calculator-body);
+    height: 600px;
+    width: 450px;
+    margin: 0 auto;
+    border-radius: 3%;
+    position: relative;
+    top: 50px;
+}

@@ -1,0 +1,10 @@
+* TOP Calculator Prject
+This is a small calculator application that was build as part of the Odin Project Fundamentals course.
+
+** Overview
+This project is an attempt to create a function calculator using HTML, CSS and JavaScript. The goal is to practice DOM manipulation, event handling and creation of basic functions.
+
+** Technologies Used
+- HTML: Basic structure of the calculator
+- CSS: Styling and layout
+- JavaScript: Loging and functionality
