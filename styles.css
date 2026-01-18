@@ -1,13 +1,14 @@
 :root{
     --background: #0a0e23;
-    --calculator-body: #f0f0f0;
-    --display: #1a1a2e;
-    --numbers: #4d4d4d;
+    --calculator-body: #6d6d7e;
+    --display: #fff9c4;
+    --display-text: #333333;
+    --numbers: #808b96;
     --operation-buttons: #ff9500;
     --equal-button: #ff6b35;
-    --ac-del-buttons: #a5a5a5;
-    --text-display: #ffffff;
-    --text-button: #000000;
+    --ac-del-buttons: #a5a5af;
+    --button-text: #000000;
+    --font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 body{
@@ -15,6 +16,8 @@ body{
 }
 
 #calculator-frame{
+    display: flex;
+    flex-direction: column;
     background-color: var(--calculator-body);
     height: 600px;
     width: 450px;
@@ -22,4 +25,108 @@ body{
     border-radius: 3%;
     position: relative;
     top: 50px;
+}
+
+#headline{
+    /* border: 2px solid yellow; */
+    flex: 1 1 10px;
+    justify-content: center;
+    margin: 15px auto 100px;
+    height: 2%;
+    min-height: 0;
+}
+#headline>a{
+    color: var(--background);
+    margin-top: 10px;
+    font-family: var(--font-family);
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7),
+    -1px -1px 1px rgba(255, 255, 255, 0.3);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#display{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.5rem 0;
+    background-color: var(--display);
+    /* border: 1px solid rgba(0,0,0,0.1); */
+    box-shadow: inset 2px 2px 2px 4px color-mix(in oklch, var(--display), black 55%);
+    /* overflow: hidden; */
+}
+
+#display-segment1{
+    flex: 1 0 1rem;
+    margin: 0.5rem 0.3rem 0;
+    border-bottom: 1px solid color-mix(in oklch, var(--display), black 10%);
+    color: var(--display-text);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: right;
+}
+#display-segment2{
+    flex: 1 0 2.5rem;
+    margin: 0 0.3rem 0;
+    color: var(--display-text);
+    font-family: var(--font-family);
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: right;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+}
+#keypad{
+    flex: 1 0 3rem;
+    min-height: 60%;
+    margin: 0 1.5rem 1.5rem;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    margin: 0 1.5rem 0;
+    justify-content: center;
+}
+.button{
+    flex:1 0 25%;
+    justify-content: center;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    background-color: var(--numbers);
+    color: var(--display-text);
+    font-family: var(--font-family);
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.1s, transform 0.1s;
+    /* prevnt user from selecting text */
+    user-select: none;
+}
+.button:active{
+    box-shadow: inset 2px 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translate(1px, 1px);
+}
+
+.del{
+    background-color: var(--ac-del-buttons);
+}
+
+.operation{
+    background-color: var(--operation-buttons);
+}
+
+.number{
+    background-color: var(--numbers);
+}
+
+#equal{
+    background-color: var(--equal-button);
+}
+
+#empty{
+    background-color: var(--calculator-body);
+    box-shadow: none;
 }
