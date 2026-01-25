@@ -25,12 +25,17 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const roundResult = (input) => {
+    let length = 14;
+    if (input.toString().slice(0, 1) === "-") {
+      length = 15;
+    }
     let result = input.toFixed(13).replace(/\.?0+$/, "");
-    if (result.length > 13) {
-      result = result.slice(0, 13);
-      display2.textContent = result;
+    if (result.length > length) {
+      result = result.slice(0, length);
+      console.log(result);
+      return result;
     } else {
-      display2.textContent = result;
+      return result;
     }
   };
 
@@ -41,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
   body.addEventListener("click", function (element) {
     /** @type {HTMLElement} */
     const e = element.target;
-    // console.log(e.id);
     if (e.id === "ac") {
       a = NaN;
       b = NaN;
@@ -49,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
       display1.textContent = "";
       display2.textContent = "0";
       input = "";
+    } else if (e.id === "minus" && input === "") {
+      input = "-";
+      display2.textContent = input;
     } else if (e.id === "del") {
       if (display2.textContent !== "0") {
         input = input.slice(0, input.length - 1);
@@ -64,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
       input = input + e.id;
       display2.textContent = input;
     } else if (e.classList.value.includes("operation")) {
-      console.log(input);
       if (input !== "") {
         // if the input is not NaN so the user has already entered some numbers, the funciton will be executed
         if (isNaN(a)) {
@@ -77,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
           display1.textContent =
             display1.textContent + " " + input + " " + e.textContent;
           operation = e.id;
-          a = calculateResult(a, b, operation);
           input = "";
+          a = calculateResult(a, b, operation);
           display2.textContent = roundResult(a);
         }
       } else {
@@ -93,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
       b = NaN;
       input = "";
       operation = "";
+      console.log(a);
       display2.textContent = roundResult(a);
       // }
     }
