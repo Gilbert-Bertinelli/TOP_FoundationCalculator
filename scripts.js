@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
           input = "";
         } else {
           b = parseFloat(input);
+          a = calculateResult(a, b, operation);
           display1.textContent =
             display1.textContent + " " + input + " " + e.textContent;
           operation = e.id;
           input = "";
-          a = calculateResult(a, b, operation);
           display2.textContent = roundResult(a);
         }
       } else {
