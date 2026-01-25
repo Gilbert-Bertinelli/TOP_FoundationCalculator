@@ -24,6 +24,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  const roundResult = (input) => {
+    let result = input.toFixed(13).replace(/\.?0+$/, "");
+    if (result.length > 13) {
+      result = result.slice(0, 13);
+      display2.textContent = result;
+    } else {
+      display2.textContent = result;
+    }
+  };
+
   display1.textContent = "";
   display2.textContent = "0";
 
@@ -31,49 +41,60 @@ document.addEventListener("DOMContentLoaded", function () {
   body.addEventListener("click", function (element) {
     /** @type {HTMLElement} */
     const e = element.target;
-    // console.log(e.classList.value);
-    if (e.classList.value.includes("number")) {
+    // console.log(e.id);
+    if (e.id === "ac") {
+      a = NaN;
+      b = NaN;
+      operation = "";
+      display1.textContent = "";
+      display2.textContent = "0";
+      input = "";
+    } else if (e.id === "del") {
+      if (display2.textContent !== "0") {
+        input = input.slice(0, input.length - 1);
+        if (input === "") {
+          input = "0";
+        }
+        display2.textContent = input;
+      }
+    } else if (e.id === "dot") {
+      input = input + ".";
+      display2.textContent = input;
+    } else if (e.classList.value.includes("number")) {
       input = input + e.id;
       display2.textContent = input;
     } else if (e.classList.value.includes("operation")) {
-      // if the input is not NaN so the user has already entered some numbers, the funciton will be executed
+      console.log(input);
       if (input !== "") {
-        if (isNaN(a) && isNaN(b)) {
+        // if the input is not NaN so the user has already entered some numbers, the funciton will be executed
+        if (isNaN(a)) {
           a = parseFloat(input);
           operation = e.id;
           display1.textContent = input + " " + e.textContent;
           input = "";
-        } else if (!isNaN(a) && isNaN(b)) {
+        } else {
           b = parseFloat(input);
-          operation = e.id;
           display1.textContent =
             display1.textContent + " " + input + " " + e.textContent;
-          // a = calculateResult(a, b, operation);
-          // b = NaN;
-          // display2.textContent = a;
-          input = "";
-        } else if (!isNaN(a) && !isNaN(b)) {
-          a = calculateResult(a, b, operation);
-          console.log(a);
           operation = e.id;
-          b = NaN;
-          display1.textContent = display1.textContent + " " + operation;
-          display2.textContent = a;
+          a = calculateResult(a, b, operation);
+          input = "";
+          display2.textContent = roundResult(a);
         }
-        console.log("a:" + a + " b:" + b + " operation:" + operation);
+      } else {
+        display1.textContent = display1.textContent + " " + e.textContent;
+        operation = e.id;
       }
     } else if (e.id === "equal") {
-      console.log("equal");
-      console.log("a:" + a + " b:" + b + " operation:" + operation);
-      if (!isNaN(a) && isNaN(b)) {
-        b = parseFloat(input);
-        console.log("a:" + a + " b:" + b + " operation:" + operation);
-        display1.textContent = display1.textContent + " " + a;
-        a = calculateResult(a, b, operation);
-        display2.textContent = a;
-        b = NaN;
-        input = "";
-      }
+      // if (!isNaN(a) && isNaN(b)) {
+      b = parseFloat(input);
+      display1.textContent = display1.textContent + " " + b;
+      a = calculateResult(a, b, operation);
+      b = NaN;
+      input = "";
+      operation = "";
+      display2.textContent = roundResult(a);
+      // }
     }
   });
 });

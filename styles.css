@@ -19,6 +19,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: var(--calculator-body);
+    box-shadow: 3px 3px 3px 6px;
     height: 600px;
     width: 450px;
     margin: 0 auto;
@@ -28,7 +29,6 @@ body{
 }
 
 #headline{
-    /* border: 2px solid yellow; */
     flex: 1 1 10px;
     justify-content: center;
     margin: 15px auto 100px;
